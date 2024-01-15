@@ -1,0 +1,46 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+
+img {
+    width: 70vw;
+    height: 60vh;
+    aspect-ratio: 11/12;
+    object-fit: contain;
+    transition:cubic-bezier(0.23, 1, 0.320, 1) 1s ease;
+}
+
+button {
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: .5rem;
+    background: transparent;
+}
+
+.loader {
+    display: none;
+    border: 4px solid beige;
+    border-top: 4px solid;  /* #3498db; */
+    border-radius: 50%; /* Make it round */
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite; /* Spin animation */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
