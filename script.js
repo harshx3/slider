@@ -8,52 +8,30 @@ let currentIndex = 0;
 
  prevBtn.addEventListener('click', changeImage);
  nextBtn.addEventListener("click", changeImage);
-
- const buttonActions = {
-    prevBtn: {
-        action: () => {
-            currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
-            console.log('PrevBtn');
-        }
-    },
-    nextBtn: {
-        action: () => {
-            currentIndex = (currentIndex + 1) % imageList.length;
-            console.log('NextBtn');
-        }
-    }
-};
-
+ document.addEventListener('keydown', changeImage);
 
  function changeImage() {
-
-    let pressedBtn = null;
-    if(event.key === "ArrowRight") {
-        pressedBtn = 'nextBtn'
+    if(this === prevBtn || event.key === 'ArrowLeft') {
+        currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+        console.log(event.key);
     }
-    else if(event.key === "ArrowLeft") {
-        pressedBtn = 'leftBtn';
-    }
-
-    if(pressedBtn) {
-        buttonActions[pressedBtn].action();
+    else if(this === nextBtn || event.key === 'ArrowRight') {
+        currentIndex = (currentIndex + 1) % imageList.length;
     }
     else {
-        console.log("invalid key");
+        console.log('invalid');
     }
- 
-     const currentImg = imageList[currentIndex];
 
-      loader.style.display = 'block';
-      image.style.display = 'none';
-      setTimeout(() => {
-          image.src = `./images/${currentImg}.jpg`;
-          loader.style.display = 'none';
-      image.style.display = 'block';
-        
-      }, 100);
+    const currentImage = imageList[currentIndex];
 
+    loader.style.display = 'block';
+    image.style.display = 'none';
+    setTimeout(() => {
+        image.src = `./images/${currentImage}.jpg`
+        loader.style.display = 'none';
+       image.style.display = 'block';
+    }, 100);
+
+
+    console.log('change image called');
  }
-
- document.addEventListener('keydown', changeImgUsingKey);
-
